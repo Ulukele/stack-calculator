@@ -1,6 +1,6 @@
 package Calculator;
 
-import java.util.List;
+import Common.OperatorArgument;
 
 public interface CalculatorOperator {
     Iterable<OperatorArgument> args = null;

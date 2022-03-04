@@ -1,4 +1,4 @@
-package Calculator;
+package Common;
 
 /**
  * Value class for operators arguments

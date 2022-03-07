@@ -18,6 +18,10 @@ public class TokensReader {
         lineReader = new LineReader();
     }
 
+    public void parseInput() {
+        lineReader.readAll();
+    }
+
     // Returns null if there is no lines
     public Iterable<CalculatorToken> getNextLineTokens() throws IOException {
         if (lineReader.isEmpty()) return null;

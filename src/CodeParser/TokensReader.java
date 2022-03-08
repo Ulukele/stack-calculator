@@ -23,7 +23,7 @@ public class TokensReader {
     }
 
     // Returns null if there is no lines
-    public Iterable<CalculatorToken> getNextLineTokens() throws IOException {
+    public List<CalculatorToken> getNextLineTokens() throws IOException {
         if (lineReader.isEmpty()) return null;
         Reader reader = new BufferedReader(new StringReader(lineReader.getNextLine()));
         StreamTokenizer streamTokenizer = new StreamTokenizer(reader);

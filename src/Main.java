@@ -1,7 +1,12 @@
+import Calculator.Operators.CalculatorOperatorInterface;
+import Calculator.OperatorsExecutor;
+import Calculator.OperatorsFactory.OperatorsFactory;
 import CodeParser.TokensReader;
+import Common.CalculatorOperation;
 import Common.CalculatorToken;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,14 +22,20 @@ public class Main {
             return;
         }
 
+        OperatorsExecutor executor = new OperatorsExecutor();
+        OperatorsFactory operatorsFactory = new OperatorsFactory("");
         tokensReader.parseInput();
-        try {
-            while (!tokensReader.isEmpty()) {
-                Iterable<CalculatorToken> tokens = tokensReader.getNextLineTokens();
-
+        while (!tokensReader.isEmpty()) {
+            try {
+                List<CalculatorToken> tokens = tokensReader.getNextLineTokens();
+                CalculatorOperation calculatorOperation = new CalculatorOperation(tokens);
+                CalculatorOperatorInterface operator = operatorsFactory.getInstance(calculatorOperation.getOperatorName());
+                operator.passArgs(calculatorOperation.getArgs());
+                executor.executeOne(operator);
+            } catch (IOException | IllegalArgumentException exception) {
+                exception.printStackTrace();
             }
-        } catch (IOException exception) {
-            exception.printStackTrace();
+
         }
 
     }

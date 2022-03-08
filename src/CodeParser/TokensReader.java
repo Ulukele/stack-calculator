@@ -22,11 +22,13 @@ public class TokensReader {
         lineReader.readAll();
     }
 
-    // Returns null if there is no lines
+    // Returns null if there is no lines or this is comment line
     public List<CalculatorToken> getNextLineTokens() throws IOException {
         if (lineReader.isEmpty()) return null;
         Reader reader = new BufferedReader(new StringReader(lineReader.getNextLine()));
         StreamTokenizer streamTokenizer = new StreamTokenizer(reader);
+        streamTokenizer.wordChars('%', '/');
+        streamTokenizer.commentChar('#');
 
         List<CalculatorToken> tokens = new ArrayList<>();
         int currentToken = streamTokenizer.nextToken();
@@ -38,6 +40,7 @@ public class TokensReader {
             }
             currentToken = streamTokenizer.nextToken();
         }
+        if (tokens.size() == 0) return null;
         return tokens;
     }
 

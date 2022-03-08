@@ -14,7 +14,7 @@ public class CalculatorOperation {
 
     public CalculatorOperation(List<CalculatorToken> tokensLine) throws IllegalArgumentException {
         if (tokensLine == null || tokensLine.size() == 0) {
-            throw new IllegalArgumentException("Expect non empty tokens list, got null or 0-size list");
+            throw new IllegalArgumentException("Expect non empty tokens list, got " + tokensLine);
         }
         operatorName = tokensLine.get(0).toString();
         args = tokensLine.subList(1, tokensLine.size());

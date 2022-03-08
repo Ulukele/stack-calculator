@@ -9,12 +9,7 @@ public class OperatorsExecutor {
         executionContext = new ExecutionContext();
     }
 
-    public void executeOne(CalculatorOperatorInterface operator) {
-        try {
-            operator.execute(executionContext);
-        }
-        catch (RuntimeException runtimeException) {
-            runtimeException.printStackTrace(System.err);
-        }
+    public void executeOne(CalculatorOperatorInterface operator) throws UnsupportedOperationException {
+        operator.execute(executionContext);
     }
 }

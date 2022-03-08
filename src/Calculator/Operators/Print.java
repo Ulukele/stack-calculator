@@ -13,7 +13,7 @@ public class Print extends OperatorWithoutArgs {
         if (stack.size() < 1) {
             throw new UnsupportedOperationException("Expect at least 1 value in stack, got 0" );
         } else {
-            System.console().printf(stack.peek().toString());
+            System.out.println(stack.peek());
         }
     }
 }

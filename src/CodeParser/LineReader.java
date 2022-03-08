@@ -28,8 +28,8 @@ public class LineReader {
         if (filename == null) return;
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             readFromBufferedReader(reader);
-        } catch (FileNotFoundException exception) {
-            exception.printStackTrace();
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
         }
     }
 

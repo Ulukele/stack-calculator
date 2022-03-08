@@ -23,19 +23,19 @@ public class Main {
         }
 
         OperatorsExecutor executor = new OperatorsExecutor();
-        OperatorsFactory operatorsFactory = new OperatorsFactory("");
+        OperatorsFactory operatorsFactory = new OperatorsFactory();
         tokensReader.parseInput();
         while (!tokensReader.isEmpty()) {
             try {
                 List<CalculatorToken> tokens = tokensReader.getNextLineTokens();
+                if (tokens == null) continue; // Comment line
                 CalculatorOperation calculatorOperation = new CalculatorOperation(tokens);
                 CalculatorOperatorInterface operator = operatorsFactory.getInstance(calculatorOperation.getOperatorName());
                 operator.passArgs(calculatorOperation.getArgs());
                 executor.executeOne(operator);
-            } catch (IOException | IllegalArgumentException exception) {
-                exception.printStackTrace();
+            } catch (Exception exception) {
+                exception.printStackTrace(System.out);
             }
-
         }
 
     }

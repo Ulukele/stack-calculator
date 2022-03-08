@@ -1,36 +1,42 @@
 package Common;
 
+import javax.lang.model.SourceVersion;
+
 /**
  * Value class for operators arguments
  * can be interpreted as double or as string
  * throw exception if you can't interpret in needed way
  */
 public class CalculatorToken {
-    private String value = null;
+    private String stringValue = null;
     private Double numberValue = null;
 
-    public CalculatorToken(String value) {
-        this.value = value;
+    public CalculatorToken(String stringValue) {
+        this.stringValue = stringValue;
     }
     public CalculatorToken(Double numberValue) {
         this.numberValue = numberValue;
     }
 
     public String toString() {
-        if (value != null) return value;
-        value = numberValue.toString();
-        return value;
+        if (stringValue != null) return stringValue;
+        stringValue = numberValue.toString();
+        return stringValue;
     }
 
     public Double toDouble() throws UnsupportedOperationException {
         if (numberValue != null) return numberValue;
         try {
-            numberValue = Double.valueOf(value);
+            numberValue = Double.valueOf(stringValue);
             return numberValue;
         }
         catch (NumberFormatException e) {
-            throw new UnsupportedOperationException("Expect double value, got " + value);
+            throw new UnsupportedOperationException("Expect double value, got " + stringValue);
         }
+    }
+
+    public boolean isIdentifier() {
+        return SourceVersion.isIdentifier(toString());
     }
 
 }

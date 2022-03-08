@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CalculatorOperatorInterface {
     void passArgs(List<CalculatorToken> args);
-    void execute(ExecutionContext executionContext);
+    void execute(ExecutionContext executionContext) throws UnsupportedOperationException;
 }

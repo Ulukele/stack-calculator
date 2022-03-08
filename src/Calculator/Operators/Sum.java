@@ -4,7 +4,7 @@ import Calculator.ExecutionContext;
 
 import java.util.Stack;
 
-public class Sum implements CalculatorOperator {
+public class Sum extends OperatorWithoutArgs {
     public Sum() {}
 
     @Override

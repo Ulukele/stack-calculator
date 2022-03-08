@@ -3,9 +3,9 @@ package Calculator.Operators;
 import Calculator.ExecutionContext;
 import Common.CalculatorToken;
 
-import java.util.Collection;
+import java.util.List;
 
-public interface CalculatorOperator {
-    Collection<CalculatorToken> args = null;
+public interface CalculatorOperatorInterface {
+    void passArgs(List<CalculatorToken> args);
     void execute(ExecutionContext executionContext);
 }

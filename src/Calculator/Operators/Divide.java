@@ -4,7 +4,7 @@ import Calculator.ExecutionContext;
 
 import java.util.Stack;
 
-public class Divide implements CalculatorOperator {
+public class Divide extends OperatorWithoutArgs {
     public Divide() {}
 
     @Override

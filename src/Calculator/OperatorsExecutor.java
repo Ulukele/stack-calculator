@@ -1,6 +1,6 @@
 package Calculator;
 
-import Calculator.Operators.CalculatorOperator;
+import Calculator.Operators.CalculatorOperatorInterface;
 
 public class OperatorsExecutor {
     private final ExecutionContext executionContext;
@@ -9,7 +9,7 @@ public class OperatorsExecutor {
         executionContext = new ExecutionContext();
     }
 
-    public void executeOne(CalculatorOperator operator) {
+    public void executeOne(CalculatorOperatorInterface operator) {
         try {
             operator.execute(executionContext);
         }

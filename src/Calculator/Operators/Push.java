@@ -1,16 +1,9 @@
 package Calculator.Operators;
 
 import Calculator.ExecutionContext;
-import Common.CalculatorToken;
 
-import java.util.List;
-
-public class Push implements CalculatorOperator {
-    private final List<CalculatorToken> args;
-
-    public Push(List<CalculatorToken> args) {
-        this.args = args;
-    }
+public class Push extends OperatorWithArgs {
+    public Push() {}
 
     @Override
     public void execute(ExecutionContext executionContext) throws UnsupportedOperationException {

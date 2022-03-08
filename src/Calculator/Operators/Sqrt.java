@@ -4,7 +4,7 @@ import Calculator.ExecutionContext;
 
 import java.util.Stack;
 
-public class Sqrt implements CalculatorOperator {
+public class Sqrt extends OperatorWithoutArgs {
     public Sqrt() {}
 
     @Override

@@ -2,8 +2,7 @@ package Calculator.Operators;
 
 import Calculator.ExecutionContext;
 
-public class Pop implements CalculatorOperator{
-
+public class Pop extends OperatorWithoutArgs {
     public Pop() {}
 
     @Override

@@ -4,7 +4,7 @@ import Calculator.ExecutionContext;
 
 import java.util.Stack;
 
-public class Print implements CalculatorOperator {
+public class Print extends OperatorWithoutArgs {
     public Print() {}
 
     @Override

@@ -21,12 +21,7 @@ public class Main {
         try {
             while (!tokensReader.isEmpty()) {
                 Iterable<CalculatorToken> tokens = tokensReader.getNextLineTokens();
-                System.out.println("----------");
-                for (CalculatorToken token : tokens) {
-                    System.out.print(token.toString() + ", ");
-                }
-                System.out.println("\n----------");
-                // pass to factory
+
             }
         } catch (IOException exception) {
             exception.printStackTrace();

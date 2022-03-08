@@ -4,7 +4,7 @@ import Calculator.ExecutionContext;
 
 import java.util.Stack;
 
-public class Sub implements CalculatorOperator {
+public class Sub extends OperatorWithoutArgs {
     public Sub() {}
 
     @Override

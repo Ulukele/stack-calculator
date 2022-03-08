@@ -5,12 +5,8 @@ import Common.CalculatorToken;
 
 import java.util.List;
 
-public class Define implements CalculatorOperator {
-    private final List<CalculatorToken> args;
-
-    public Define(List<CalculatorToken> args) {
-        this.args = args;
-    }
+public class Define extends OperatorWithArgs {
+    public Define() {}
 
     @Override
     public void execute(ExecutionContext executionContext) throws UnsupportedOperationException {

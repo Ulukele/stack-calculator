@@ -4,7 +4,7 @@ import Calculator.ExecutionContext;
 
 import java.util.Stack;
 
-public class Multiply implements CalculatorOperator {
+public class Multiply extends OperatorWithoutArgs {
     public Multiply() {}
 
     @Override

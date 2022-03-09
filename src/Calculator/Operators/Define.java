@@ -1,22 +1,24 @@
 package Calculator.Operators;
 
+import Calculator.Exceptions.*;
 import Calculator.ExecutionContext;
-import Common.CalculatorToken;
+import Calculator.Common.CalculatorToken;
 
 public class Define extends OperatorWithArgs {
     public Define() {}
 
     @Override
-    public void execute(ExecutionContext executionContext) throws UnsupportedOperationException {
+    public void execute(ExecutionContext executionContext)
+            throws CalculatorExecutionContextException, OperatorArgsException {
         if (args.size() == 2) {
             CalculatorToken identifier = args.get(0);
             if (!identifier.isIdentifier()) {
-                throw new UnsupportedOperationException("Expect variable name, got " + identifier);
+                throw new CalculatorVariablesException("Expect variable name, got " + identifier);
             }
             Double value = args.get(1).toDouble();
             executionContext.getVariables().put(identifier.toString(), value);
         } else {
-            throw new UnsupportedOperationException("Expect 1 argument, got " + args.size());
+            throw new OperatorArgsCountException(args, 2);
         }
     }
 }

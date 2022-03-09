@@ -2,10 +2,9 @@ import Calculator.Operators.CalculatorOperatorInterface;
 import Calculator.OperatorsExecutor;
 import Calculator.OperatorsFactory.OperatorsFactory;
 import CodeParser.TokensReader;
-import Common.CalculatorOperation;
-import Common.CalculatorToken;
+import Calculator.Common.CalculatorOperation;
+import Calculator.Common.CalculatorToken;
 
-import java.io.IOException;
 import java.util.List;
 
 public class Main {

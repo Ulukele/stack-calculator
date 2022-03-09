@@ -1,5 +1,9 @@
 package Calculator;
 
+import Calculator.Exceptions.CalculationException;
+import Calculator.Exceptions.CalculatorExecutionContextException;
+import Calculator.Exceptions.OperatorArgsInterpretException;
+import Calculator.Exceptions.OperatorException;
 import Calculator.Operators.CalculatorOperatorInterface;
 
 public class OperatorsExecutor {
@@ -9,7 +13,8 @@ public class OperatorsExecutor {
         executionContext = new ExecutionContext();
     }
 
-    public void executeOne(CalculatorOperatorInterface operator) throws UnsupportedOperationException {
+    public void executeOne(CalculatorOperatorInterface operator)
+            throws OperatorException, CalculatorExecutionContextException, CalculationException {
         operator.execute(executionContext);
     }
 }

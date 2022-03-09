@@ -1,6 +1,6 @@
 package CodeParser;
 
-import Common.CalculatorToken;
+import Calculator.Common.CalculatorToken;
 
 import java.io.*;
 import java.util.ArrayList;

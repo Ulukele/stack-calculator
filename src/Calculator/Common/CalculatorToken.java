@@ -1,4 +1,6 @@
-package Common;
+package Calculator.Common;
+
+import Calculator.Exceptions.OperatorArgsInterpretException;
 
 import javax.lang.model.SourceVersion;
 
@@ -24,14 +26,14 @@ public class CalculatorToken {
         return stringValue;
     }
 
-    public Double toDouble() throws UnsupportedOperationException {
+    public Double toDouble() throws OperatorArgsInterpretException {
         if (numberValue != null) return numberValue;
         try {
             numberValue = Double.valueOf(stringValue);
             return numberValue;
         }
         catch (NumberFormatException e) {
-            throw new UnsupportedOperationException("Expect double value, got " + stringValue);
+            throw new OperatorArgsInterpretException(stringValue);
         }
     }
 

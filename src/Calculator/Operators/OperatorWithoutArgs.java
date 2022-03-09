@@ -1,6 +1,6 @@
 package Calculator.Operators;
 
-import Common.CalculatorToken;
+import Calculator.Common.CalculatorToken;
 
 import java.util.List;
 

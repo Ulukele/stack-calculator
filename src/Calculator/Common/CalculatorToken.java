@@ -33,7 +33,7 @@ public class CalculatorToken {
             return numberValue;
         }
         catch (NumberFormatException e) {
-            throw new OperatorArgsInterpretException(stringValue);
+            throw new OperatorArgsInterpretException(this);
         }
     }
 

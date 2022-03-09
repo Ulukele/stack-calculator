@@ -2,7 +2,6 @@ package Calculator.Operators;
 
 import Calculator.Exceptions.CalculationException;
 import Calculator.Exceptions.CalculatorExecutionContextException;
-import Calculator.Exceptions.OperatorArgsInterpretException;
 import Calculator.Exceptions.OperatorException;
 import Calculator.ExecutionContext;
 import Calculator.Common.CalculatorToken;

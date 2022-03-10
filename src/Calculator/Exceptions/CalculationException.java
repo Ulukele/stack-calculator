@@ -1,9 +1,11 @@
 package Calculator.Exceptions;
 
 public class CalculationException extends Exception {
+    public CalculationException() { super(); }
     public CalculationException(String message) {
         super(message);
     }
+
     public CalculationException(String message, Double value) {
         super(message + " with value " + value);
     }

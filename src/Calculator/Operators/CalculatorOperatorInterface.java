@@ -12,4 +12,5 @@ public interface CalculatorOperatorInterface {
     void passArgs(List<CalculatorToken> args);
     void execute(ExecutionContext executionContext)
             throws CalculatorExecutionContextException, OperatorException, CalculationException;
+    String getOutput();
 }

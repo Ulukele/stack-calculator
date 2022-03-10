@@ -1,48 +1,32 @@
 package Calculator.Operators;
 
-import Calculator.Common.CalculatorToken;
 import Calculator.ExecutionContext;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PushTest {
+class PopTest {
 
     @Test
     @DisplayName("Execute with correct args")
     void executeCorrect() {
-        Push operator = new Push();
-        Double arg = 1.0;
-
-        List<CalculatorToken> args = new ArrayList<>();
-        args.add(new CalculatorToken(arg));
-        operator.passArgs(args);
+        Pop operator = new Pop();
 
         ExecutionContext executionContext = new ExecutionContext();
+        executionContext.getStack().push(1.0);
         assertDoesNotThrow(() -> operator.execute(executionContext));
         Stack<Double> stack = executionContext.getStack();
-        assertAll(
-                () -> assertEquals(1, stack.size()),
-                () -> assertEquals(arg, stack.peek())
-        );
+        assertEquals(0, stack.size());
     }
 
     @Test
     @DisplayName("Execute with incorrect args")
     void executeIncorrect() {
-        Push operator = new Push();
-        String arg = "incorrect";
-
-        List<CalculatorToken> args = new ArrayList<>();
-        args.add(new CalculatorToken(arg));
-        operator.passArgs(args);
-
+        Pop operator = new Pop();
         ExecutionContext executionContext = new ExecutionContext();
         assertThrows(Exception.class, () -> operator.execute(executionContext));
     }
+
 }

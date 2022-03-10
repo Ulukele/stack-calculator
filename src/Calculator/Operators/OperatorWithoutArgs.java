@@ -4,7 +4,7 @@ import Calculator.Common.CalculatorToken;
 
 import java.util.List;
 
-abstract public class OperatorWithoutArgs implements CalculatorOperatorInterface {
+abstract public class OperatorWithoutArgs extends BaseOperator {
     @Override
     public void passArgs(List<CalculatorToken> args) {}
 }

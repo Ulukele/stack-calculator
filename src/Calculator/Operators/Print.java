@@ -6,6 +6,7 @@ import Calculator.ExecutionContext;
 import java.util.Stack;
 
 public class Print extends OperatorWithoutArgs {
+    private String output = null;
     public Print() {}
 
     @Override
@@ -14,7 +15,12 @@ public class Print extends OperatorWithoutArgs {
         if (stack.isEmpty()) {
             throw new CalculatorStackSizeException(stack, 1);
         } else {
-            System.out.println(stack.peek());
+            output = stack.peek().toString();
         }
+    }
+
+    @Override
+    public String getOutput() {
+        return output;
     }
 }

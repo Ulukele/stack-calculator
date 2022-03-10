@@ -19,4 +19,9 @@ public class Multiply extends OperatorWithoutArgs {
             stack.push(first * second);
         }
     }
+
+    @Override
+    public String getOutput() {
+        return null;
+    }
 }

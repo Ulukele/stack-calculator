@@ -8,24 +8,10 @@ import java.util.List;
 
 public class TokensReader {
 
-    private final LineReader lineReader;
-
-    public TokensReader(String filename) {
-        lineReader = new LineReader(filename);
-    }
-
-    public TokensReader() {
-        lineReader = new LineReader();
-    }
-
-    public void parseInput() {
-        lineReader.readAll();
-    }
-
     // Returns null if there is no lines or this is comment line
-    public List<CalculatorToken> getNextLineTokens() throws IOException {
-        if (lineReader.isEmpty()) return null;
-        Reader reader = new BufferedReader(new StringReader(lineReader.getNextLine()));
+    static public List<CalculatorToken> getNextLineTokens(String line) throws IOException {
+        if (line == null) return null;
+        Reader reader = new BufferedReader(new StringReader(line));
         StreamTokenizer streamTokenizer = new StreamTokenizer(reader);
         streamTokenizer.wordChars('%', '/');
         streamTokenizer.commentChar('#');
@@ -42,9 +28,5 @@ public class TokensReader {
         }
         if (tokens.size() == 0) return null;
         return tokens;
-    }
-
-    public boolean isEmpty() {
-        return lineReader.isEmpty();
     }
 }

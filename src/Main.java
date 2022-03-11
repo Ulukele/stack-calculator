@@ -1,39 +1,60 @@
+import Calculator.Exceptions.CalculationException;
+import Calculator.Exceptions.CalculatorException;
+import Calculator.Exceptions.FactoryException;
+import Calculator.Exceptions.OperatorException;
 import Calculator.Operators.CalculatorOperatorInterface;
 import Calculator.OperatorsExecutor;
 import Calculator.OperatorsFactory.OperatorsFactory;
+import CodeParser.InputReader;
+import CodeParser.LineReader;
 import CodeParser.TokensReader;
 import Calculator.Common.CalculatorOperation;
 import Calculator.Common.CalculatorToken;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
 
-        TokensReader tokensReader = null;
+        InputReader inputReader = null;
         if (args.length == 0) {
-            tokensReader = new TokensReader(); // from file
+            inputReader = new InputReader(); // from standard stream
         } else if (args.length == 1) {
-            tokensReader = new TokensReader(args[0]); // from standard stream
+            inputReader = new InputReader(args[0]); // from file
         }
-        if (tokensReader == null) {
+        if (inputReader == null) {
             System.err.println("Specify only 1 argument -- filename");
+            return;
+        }
+
+        LineReader lineReader;
+        try {
+            lineReader = new LineReader(inputReader.getReader());
+            lineReader.readAll();
+        } catch (IOException exception) {
+            exception.printStackTrace();
             return;
         }
 
         OperatorsExecutor executor = new OperatorsExecutor();
         OperatorsFactory operatorsFactory = new OperatorsFactory();
-        tokensReader.parseInput();
-        while (!tokensReader.isEmpty()) {
+        while (!lineReader.isEmpty()) {
             try {
-                List<CalculatorToken> tokens = tokensReader.getNextLineTokens();
+                String line = lineReader.getNextLine();
+                List<CalculatorToken> tokens = TokensReader.getNextLineTokens(line);
                 if (tokens == null) continue; // Comment line
                 CalculatorOperation calculatorOperation = new CalculatorOperation(tokens);
                 CalculatorOperatorInterface operator = operatorsFactory.getInstance(calculatorOperation.getOperatorName());
                 operator.passArgs(calculatorOperation.getArgs());
                 executor.executeOne(operator);
-            } catch (Exception exception) {
+            } catch (IOException | FactoryException exception) {
                 exception.printStackTrace(System.out);
+                return;
+            } catch (CalculatorException calculatorException) {
+                calculatorException.printStackTrace();
             }
         }
 

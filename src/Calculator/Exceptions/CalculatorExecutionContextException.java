@@ -1,6 +1,6 @@
 package Calculator.Exceptions;
 
-public class CalculatorExecutionContextException extends Exception {
+public class CalculatorExecutionContextException extends CalculatorException {
     public CalculatorExecutionContextException() { super(); }
 
     public CalculatorExecutionContextException(String message) {

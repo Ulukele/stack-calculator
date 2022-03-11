@@ -10,18 +10,18 @@ import java.util.Properties;
 public class OperatorsFactory {
     private final Properties properties;
 
-    public OperatorsFactory() {
+    public OperatorsFactory() throws FactoryException {
         properties = new Properties();
         initMapping();
     }
 
-    private void initMapping() {
+    private void initMapping() throws FactoryException {
         String configFile = "configuration.properties";
         InputStream resourceStream = OperatorsFactory.class.getResourceAsStream(configFile);
         try {
             properties.load(resourceStream);
         } catch (IOException ioException) {
-            ioException.printStackTrace();
+            throw new FactoryException("Error while reading configuration file", ioException);
         }
     }
 

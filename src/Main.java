@@ -1,7 +1,5 @@
-import Calculator.Exceptions.CalculationException;
 import Calculator.Exceptions.CalculatorException;
 import Calculator.Exceptions.FactoryException;
-import Calculator.Exceptions.OperatorException;
 import Calculator.Operators.CalculatorOperatorInterface;
 import Calculator.OperatorsExecutor;
 import Calculator.OperatorsFactory.OperatorsFactory;
@@ -10,14 +8,19 @@ import CodeParser.LineReader;
 import CodeParser.TokensReader;
 import Calculator.Common.CalculatorOperation;
 import Calculator.Common.CalculatorToken;
+import Logging.EventsLogger;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
+        try { // Setup logging
+            EventsLogger.configure();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
 
         InputReader inputReader = null;
         if (args.length == 0) {
@@ -57,6 +60,5 @@ public class Main {
                 calculatorException.printStackTrace();
             }
         }
-
     }
 }

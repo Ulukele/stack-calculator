@@ -12,6 +12,7 @@ public class Pop extends OperatorWithoutArgs {
     public void execute(ExecutionContext executionContext) throws CalculatorStackSizeException {
         Stack<Double> stack = executionContext.getStack();
         if (stack.isEmpty()) throw new CalculatorStackSizeException(stack, 1);
-        stack.pop();
+        Double result = stack.pop();;
+        logger.fine("Result: " + result);
     }
 }

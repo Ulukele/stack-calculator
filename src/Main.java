@@ -8,18 +8,22 @@ import CodeParser.LineReader;
 import CodeParser.TokensReader;
 import Calculator.Common.CalculatorOperation;
 import Calculator.Common.CalculatorToken;
-import Logging.EventsLogger;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class Main {
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
     public static void main(String[] args) {
 
-        try { // Setup logging
-            EventsLogger.configure();
+        try {
+            LogManager.getLogManager().readConfiguration(
+                    Main.class.getResourceAsStream("/logger.properties"));
         } catch (IOException exception) {
-            exception.printStackTrace();
+            System.err.println("Error while opening logger configuration: " + exception.toString());
         }
 
         InputReader inputReader = null;
@@ -29,7 +33,7 @@ public class Main {
             inputReader = new InputReader(args[0]); // from file
         }
         if (inputReader == null) {
-            System.err.println("Specify only 1 argument -- filename");
+            logger.severe("Specify only 1 argument -- filename");
             return;
         }
 
@@ -38,7 +42,7 @@ public class Main {
             lineReader = new LineReader(inputReader.getReader());
             lineReader.readAll();
         } catch (IOException exception) {
-            exception.printStackTrace();
+            logger.log(Level.SEVERE, "IOException: ", exception);
             return;
         }
 
@@ -47,6 +51,7 @@ public class Main {
         while (!lineReader.isEmpty()) {
             try {
                 String line = lineReader.getNextLine();
+                logger.info("Code line: " + line);
                 List<CalculatorToken> tokens = TokensReader.getNextLineTokens(line);
                 if (tokens == null) continue; // Comment line
                 CalculatorOperation calculatorOperation = new CalculatorOperation(tokens);
@@ -54,10 +59,10 @@ public class Main {
                 operator.passArgs(calculatorOperation.getArgs());
                 executor.executeOne(operator);
             } catch (IOException | FactoryException exception) {
-                exception.printStackTrace(System.out);
+                logger.log(Level.SEVERE, "Fatal Error: ", exception);
                 return;
             } catch (CalculatorException calculatorException) {
-                calculatorException.printStackTrace();
+                logger.log(Level.WARNING, "CalculatorException: ", calculatorException);
             }
         }
     }

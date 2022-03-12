@@ -20,6 +20,7 @@ public class Sqrt extends OperatorWithoutArgs {
         if (result.isInfinite() || result.isNaN()) {
             throw new CalculationException("Exception in SQRT ", value);
         }
+        logger.fine("Result: " + result);
         stack.push(result);
     }
 }

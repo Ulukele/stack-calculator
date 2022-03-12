@@ -17,6 +17,7 @@ public class Define extends OperatorWithArgs {
             }
             Double value = args.get(1).toDouble();
             executionContext.getVariables().put(identifier.toString(), value);
+            logger.fine("Defined " + identifier + " as " + value);
         } else {
             throw new OperatorArgsCountException(args, 2);
         }

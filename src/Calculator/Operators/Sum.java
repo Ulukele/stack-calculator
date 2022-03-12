@@ -16,7 +16,9 @@ public class Sum extends OperatorWithoutArgs {
         } else {
             Double first = stack.pop();
             Double second = stack.pop();
-            stack.push(first + second);
+            Double result = first + second;
+            logger.fine("Result: " + result);
+            stack.push(result);
         }
     }
 }

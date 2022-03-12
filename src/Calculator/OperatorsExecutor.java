@@ -4,13 +4,13 @@ import Calculator.Exceptions.CalculationException;
 import Calculator.Exceptions.CalculatorExecutionContextException;
 import Calculator.Exceptions.OperatorException;
 import Calculator.Operators.CalculatorOperatorInterface;
-import Logging.EventsLogger;
 
-import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class OperatorsExecutor {
     private final ExecutionContext executionContext;
+    private final Logger logger = Logger.getLogger(OperatorsExecutor.class.getName());
 
     public OperatorsExecutor() {
         executionContext = new ExecutionContext();
@@ -18,11 +18,10 @@ public class OperatorsExecutor {
 
     public void executeOne(CalculatorOperatorInterface operator)
             throws OperatorException, CalculatorExecutionContextException, CalculationException {
-        EventsLogger.logp(Level.INFO, operator.getClass().getName(), "execute", "Executing operator");
         operator.execute(executionContext);
         String output = operator.getOutput();
         if (output != null) {
-            EventsLogger.log(Level.INFO, output);
+            logger.info("Output: " + output);
         }
     }
 }

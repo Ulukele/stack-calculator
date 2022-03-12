@@ -21,6 +21,7 @@ public class Divide extends OperatorWithoutArgs {
             if (result.isInfinite() || result.isNaN()) {
                 throw new CalculationException("Problem with dividing ", first, second);
             }
+            logger.fine("Result: " + result);
             stack.push(result);
         }
     }

@@ -2,15 +2,17 @@ package Calculator.OperatorsFactory;
 
 import Calculator.Exceptions.FactoryException;
 import Calculator.Operators.CalculatorOperatorInterface;
-import Calculator.OperatorsExecutor;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.Properties;
+import java.util.TreeMap;
 import java.util.logging.Logger;
 
 public class OperatorsFactory {
     private final Properties properties;
+    private final Map<String, String> operatorsToClassNames = new TreeMap<>();
     private final Logger logger = Logger.getLogger(OperatorsFactory.class.getName());
 
     public OperatorsFactory() throws FactoryException {
@@ -27,11 +29,12 @@ public class OperatorsFactory {
         } catch (IOException ioException) {
             throw new FactoryException("Error while reading configuration file", ioException);
         }
+        properties.forEach((key, value) -> operatorsToClassNames.put(key.toString(), value.toString()));
         logger.fine("Configure factory successfully");
     }
 
     public CalculatorOperatorInterface getInstance(String operatorName) throws FactoryException {
-        String className = properties.getProperty(operatorName);
+        String className = operatorsToClassNames.get(operatorName);
         if (className == null) throw new FactoryException("Expect correct operator name, got " + operatorName);
 
         CalculatorOperatorInterface operator;

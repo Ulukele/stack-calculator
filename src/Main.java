@@ -1,8 +1,6 @@
 import Calculator.Exceptions.CalculatorException;
 import Calculator.Exceptions.FactoryException;
-import Calculator.Operators.CalculatorOperatorInterface;
 import Calculator.OperatorsExecutor;
-import Calculator.OperatorsFactory.OperatorsFactory;
 import CodeParser.InputReader;
 import CodeParser.LineReader;
 import CodeParser.TokensReader;

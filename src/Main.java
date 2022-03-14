@@ -47,7 +47,6 @@ public class Main {
         }
 
         OperatorsExecutor executor = new OperatorsExecutor();
-        OperatorsFactory operatorsFactory = new OperatorsFactory();
         while (!lineReader.isEmpty()) {
             try {
                 String line = lineReader.getNextLine();
@@ -55,14 +54,13 @@ public class Main {
                 List<CalculatorToken> tokens = TokensReader.getNextLineTokens(line);
                 if (tokens == null) continue; // Comment line
                 CalculatorOperation calculatorOperation = new CalculatorOperation(tokens);
-                CalculatorOperatorInterface operator = operatorsFactory.getInstance(calculatorOperation.getOperatorName());
-                operator.passArgs(calculatorOperation.getArgs());
-                executor.executeOne(operator);
-            } catch (IOException | FactoryException exception) {
-                logger.log(Level.SEVERE, "Fatal Error: ", exception);
-                return;
+                executor.executeOperation(calculatorOperation);
+            } catch (IOException exception) {
+                logger.log(Level.WARNING, "IO exception: ", exception);
+            } catch (FactoryException exception) {
+                logger.log(Level.WARNING, "Factory exception: ", exception);
             } catch (CalculatorException calculatorException) {
-                logger.log(Level.WARNING, "CalculatorException: ", calculatorException);
+                logger.log(Level.WARNING, "Calculator exception: ", calculatorException);
             }
         }
     }
